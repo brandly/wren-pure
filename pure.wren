@@ -17,13 +17,24 @@ class Pure {
     return max(list) { |value| value }
   }
   static max(list, iteratee) {
-    var max = list[0]
+    return compare(list, iteratee) { |a, b| a > b }
+  }
+
+  static min(list) {
+    return min(list) { |value| value }
+  }
+  static min(list, iteratee) {
+    return compare(list, iteratee) { |a, b| a < b }
+  }
+
+  static compare(list, iteratee, comparator) {
+    var best = list[0]
     for (item in list) {
-      if (iteratee.call(item) > iteratee.call(max)) {
-        max = item
+      if (comparator.call(iteratee.call(item), iteratee.call(best))) {
+        best = item
       }
     }
-    return max
+    return best
   }
 }
 

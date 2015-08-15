@@ -3,7 +3,7 @@ import "../pure" for Pure
 
 {
   // Find first match
-  var even = Pure.find(1..4) {|num|
+  var even = Pure.find(1..4) { |num|
     return num % 2 == 0
   }
   Please.equal(even, 2)
@@ -11,7 +11,7 @@ import "../pure" for Pure
 
 {
   // null if no match exists
-  var big = Pure.find(1..4) {|num|
+  var big = Pure.find(1..4) { |num|
     return num > 5
   }
   Please.equal(big, null)
@@ -19,7 +19,7 @@ import "../pure" for Pure
 
 {
   // Get sequence _without_ values passing the predicate
-  var odds = Pure.reject(1..5) {|num|
+  var odds = Pure.reject(1..5) { |num|
     return num % 2 == 0
   }
   Please.equal(1, odds.toList[0])
@@ -53,8 +53,24 @@ import "../pure" for Pure
     "name": "curry",
     "ppg": 23.8
   }]
-  var max = Pure.max(list) {|player| player["ppg"] }
+  var max = Pure.max(list) { |player| player["ppg"] }
   Please.equal(max, list[0])
+}
+
+{
+  Please.equal(Pure.min((1..4).toList), 1)
+}
+
+{
+  var combatless = [{
+    "name": "bea5",
+    "xp": 68952810
+  }, {
+    "name": "Z o D",
+    "xp": 242195672
+  }]
+  var min = Pure.min(combatless) { |player| player["xp"]}
+  Please.equal(min, combatless[0])
 }
 
 IO.print("All tests pass!")
