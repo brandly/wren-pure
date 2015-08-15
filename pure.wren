@@ -28,13 +28,32 @@ class Pure {
   }
 
   static compare(list, iteratee, comparator) {
-    var best = list[0]
-    for (item in list) {
-      if (comparator.call(iteratee.call(item), iteratee.call(best))) {
-        best = item
-      }
+    return list.reduce(list[0]) { |best, item|
+      return comparator.call(iteratee.call(item), iteratee.call(best)) ? item : best
     }
-    return best
+  }
+
+  static first(list) {
+    return list[0]
+  }
+  static last(list) { list[list.count - 1] }
+
+  static initial(list) {
+    return slice(list, 0, list.count - 1)
+  }
+  static tail(list) {
+    return slice(list, 1)
+  }
+
+  static slice(list, start) {
+    return slice(list, start, list.count)
+  }
+  static slice(list, start, end) {
+    var result = []
+    for (index in start...end) {
+      result.add(list[index])
+    }
+    return result
   }
 }
 

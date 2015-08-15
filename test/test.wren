@@ -73,4 +73,24 @@ import "../pure" for Pure
   Please.equal(min, combatless[0])
 }
 
+{
+  Please.equal(Pure.first((1..4).toList), 1)
+}
+
+{
+  Please.equal(Pure.last((1..4).toList), 4)
+}
+
+{
+  var list = Pure.initial((1..4).toList)
+  Please.equal(list.count, 3)
+  Please.equal(Pure.last(list), 3)
+}
+
+{
+  var list = Pure.tail((1..4).toList)
+  Please.equal(list.count, 3)
+  Please.equal(Pure.first(list), 2)
+}
+
 IO.print("All tests pass!")
