@@ -93,4 +93,16 @@ import "../pure" for Pure
   Please.equal(Pure.first(list), 2)
 }
 
+{
+  var numbers = Pure.without([1, 2, 3], 2)
+  Please.equal(numbers.count, 2)
+  Please.equal(numbers[1], 3)
+}
+
+{
+  var numbers = Pure.without([1, 2, 3], [1, 2])
+  Please.equal(numbers.count, 1)
+  Please.equal(numbers[0], 3)
+}
+
 IO.print("All tests pass!")

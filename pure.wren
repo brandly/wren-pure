@@ -55,6 +55,19 @@ class Pure {
     }
     return result
   }
+
+  static without(list, losers) {
+    if (!(losers is List)) {
+      losers = [losers]
+    }
+
+    return list.reduce([]) { |result, item|
+      if (!losers.contains(item)) {
+        result.add(item)
+      }
+      return result
+    }
+  }
 }
 
 class RejectSequence is Sequence {
