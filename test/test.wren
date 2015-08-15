@@ -41,4 +41,20 @@ import "../pure" for Pure
   Please.equal(names[1], "mark")
 }
 
+{
+  Please.equal(Pure.max((1..4).toList), 4)
+}
+
+{
+  var list = [{
+    "name": "harden",
+    "ppg": 27.4
+  }, {
+    "name": "curry",
+    "ppg": 23.8
+  }]
+  var max = Pure.max(list) {|player| player["ppg"] }
+  Please.equal(max, list[0])
+}
+
 IO.print("All tests pass!")

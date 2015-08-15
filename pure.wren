@@ -12,6 +12,19 @@ class Pure {
   static reject(sequence, predicate) { RejectSequence.new(sequence, predicate) }
 
   static pluck(sequence, key) { PluckSequence.new(sequence, key) }
+
+  static max(list) {
+    return max(list) { |value| value }
+  }
+  static max(list, iteratee) {
+    var max = list[0]
+    for (item in list) {
+      if (iteratee.call(item) > iteratee.call(max)) {
+        max = item
+      }
+    }
+    return max
+  }
 }
 
 class RejectSequence is Sequence {
