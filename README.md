@@ -7,5 +7,5 @@ Really, I'm just implementing functions from [Underscore](http://underscorejs.or
 ### tests
 
 ```shell
-$ wren test/test.wren
+$ wren test/suite.wren
 ```
