@@ -1,4 +1,4 @@
-import "test-framework" for Expect, Suite, ConsoleReporter
+import "./test-framework" for Expect, Suite, ConsoleReporter
 import "../pure" for Pure
 
 var TestPure = Suite.new("Pure") { |it|
