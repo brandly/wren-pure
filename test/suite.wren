@@ -2,6 +2,32 @@ import "test-framework" for Expect, Suite, ConsoleReporter
 import "../pure" for Pure
 
 var TestPure = Suite.new("Pure") { |it|
+  it.suite("each") { |it|
+    var list = 5..10
+
+    it.should("call the method on each item") {
+      var callAmount = 0
+      var result = Pure.each(list, Fn.new { |value|
+        Expect.call(value).toEqual(5 + callAmount)
+        callAmount = callAmount + 1
+      })
+      Expect.call(result).toEqual(list)
+      Expect.call(callAmount).toEqual(6)
+    }
+
+    it.should("call the method on each item with context") {
+      var callAmount = 0
+      var contextOutput = "Goodbye World!"
+      var result = Pure.each(list, Fn.new { |value, context|
+        callAmount = callAmount + 1
+        contextOutput = context
+      }, "Hello World!")
+      Expect.call(result).toEqual(list)
+      Expect.call(callAmount).toEqual(6)
+      Expect.call(contextOutput).toEqual("Hello World!")
+    }
+  }
+
   it.suite("find") { |it|
     it.should("find first match") {
       var even = Pure.find(1..4) { |num|

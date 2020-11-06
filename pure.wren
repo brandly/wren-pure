@@ -1,5 +1,20 @@
 
 class Pure {
+
+  static each(list, iteratee) {
+    for (item in list) {
+      iteratee.call(item)
+    }
+    return list
+  }
+
+  static each(list, iteratee, context) {
+    for (item in list) {
+      iteratee.call(item, context)
+    }
+    return list
+  }
+
   static find(sequence, predicate) {
     for (item in sequence) {
       if (predicate.call(item)) {
